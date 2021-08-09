@@ -19,7 +19,7 @@ describe 'Registrations', type: :request do
           AllowlistedJwt.count
         }.by(1)
 
-        expect(response.status).to eq(200)
+        expect(response.status).to eq(201)
       end
     end
 
@@ -39,7 +39,7 @@ describe 'Registrations', type: :request do
             AllowlistedJwt.count
           }.by(0)
 
-          expect(response.status).to eq(200)
+          expect(response.status).to eq(422)
           expect(JSON.parse(response.body).dig('errors', 'email')).to eq(['is invalid'])
         end
       end
@@ -62,7 +62,7 @@ describe 'Registrations', type: :request do
             AllowlistedJwt.count
           }.by(0)
 
-          expect(response.status).to eq(200)
+          expect(response.status).to eq(422)
           expect(JSON.parse(response.body).dig('errors', 'email')).to eq(["has already been taken"])
         end
       end
@@ -83,8 +83,7 @@ describe 'Registrations', type: :request do
             AllowlistedJwt.count
           }.by(0)
 
-          expect(response.status).to eq(200)
-          expect(JSON.parse(response.body).dig('errors', 'password')).to eq(["can't be blank"])
+          expect(response.status).to eq(422)
         end
       end
     end
