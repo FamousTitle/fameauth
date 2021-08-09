@@ -5,6 +5,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
     create_table :users do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
+
+      # use those for lockbox
+      # t.text :email_ciphertext
+      # t.string :email_bidx
+
       t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
@@ -37,6 +42,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
     end
 
     add_index :users, :email,                unique: true
+    # if using lockbox
+    # add_index :users, :email_bidx,           unique: true
+    
     add_index :users, :reset_password_token, unique: true
     # add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
