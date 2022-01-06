@@ -20,10 +20,9 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  spec.add_dependency "rails", "~> 7.0.0"
   spec.add_dependency 'devise-jwt', '~> 0.9.0'
 
-  spec.add_development_dependency "rspec-rails", "~> 5.0.1"
+  spec.add_development_dependency "rspec-rails", "~> 5.0.2"
   spec.add_development_dependency 'factory_bot_rails', "~> 6.2.0"
-  spec.add_development_dependency 'faker', "~> 2.18.0"
+  spec.add_development_dependency 'faker', "~> 2.19.0"
 end
