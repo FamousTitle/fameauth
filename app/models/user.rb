@@ -1,3 +1,6 @@
+require 'sendgrid-ruby'
+include SendGrid
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -17,7 +20,7 @@ class User < ApplicationRecord
     from = SendGrid::Email.new(email: ENV.fetch("MAIL_FROM_EMAIL"))
     to = SendGrid::Email.new(email: self.email)
 
-    body = "#{ENV.fetch('CLIENT_URL')}?password_reset_token=#{generate_reset_token}"
+    body = "#{ENV.fetch('CLIENT_URL')}/password_reset?token=#{generate_reset_token}"
 
     subject = ENV.fetch("MAIL_PASSWORD_RESET_SUBJECT", 'Password Reset')
     content = SendGrid::Content.new(type: 'text/html', value: body)
