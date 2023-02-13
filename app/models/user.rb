@@ -14,7 +14,7 @@ class User < ApplicationRecord
   # MAIL_PASSWORD_RESET_SUBJECT (optional)
   # SENDGRID_API_KEY
   def send_password_reset_email
-    from = SendGrid::Email.new(email: ENV.fetch("MAIL_FROM_EMAIL")
+    from = SendGrid::Email.new(email: ENV.fetch("MAIL_FROM_EMAIL"))
     to = SendGrid::Email.new(email: self.email)
 
     body = "#{ENV.fetch('CLIENT_URL')}?password_reset_token=#{generate_reset_token}"
